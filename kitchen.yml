@@ -1,0 +1,28 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: fedora-30
+
+suites:
+  - name: default
+    run_list:
+      - recipe[crio::default]
+    verifier:
+      inspec_tests:
+        - test/integration/default
+    attributes:
+  - name: coop
+    run_list:
+      - recipe[crio::default]
+    verifier:
+      inspec_tests:
+        - test/integration/default
+    attributes:
